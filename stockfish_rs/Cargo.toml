@@ -1,0 +1,26 @@
+[package]
+name = "stockfish_rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Stockfish Rust Port"]
+license = "GPL-3.0-or-later"
+
+[[bin]]
+name = "stockfish_rs"
+path = "src/main.rs"
+
+[dependencies]
+# For parallelism
+rayon = "1.10"
+# For lazy static initialization
+lazy_static = "1.5"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.bench]
+inherits = "release"
